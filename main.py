@@ -1,3 +1,20 @@
+import threading
+from flask import Flask
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def home():
+  return 'Trading Bot is Running Alive!'
+
+
+def run_web():
+  app.run(host='0.0.0.0', port=10000)
+
+
+# Web server ko background thread par chalane ke liye:
+threading.Thread(target=run_web).start()
 import time
 from datetime import datetime
 import pytz
